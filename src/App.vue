@@ -3,14 +3,14 @@
         <el-container>
             <el-aside class="main-aside">
                 <div class="avatar">
-                    <img src="./assets/avatar-01.png" />
+                    <img src="./assets/avatar/2.png" />
                 </div>
                 <el-menu
                     default-active="1"
                     class="el-menu-vertical-demo">
                     <el-menu-item index="1">
                         <i class="el-icon-menu"></i>
-                        <span>项目</span>
+                        <router-link :to="'/'">项目</router-link>
                     </el-menu-item>
                     <el-menu-item index="2">
                         <i class="el-icon-document"></i>
@@ -27,13 +27,12 @@
                 </el-menu>
             </el-aside>
             <el-container>
-                <el-header class="main-header">项目列表</el-header>
                 <el-main>
                     <router-view/>
                 </el-main>
-                <el-footer class="main-footer">©2018 GantTask</el-footer>
             </el-container>
         </el-container>
+        <el-footer class="main-footer">©2018 GantTask</el-footer>
     </div>
 </template>
 
@@ -52,43 +51,51 @@ export default {
         margin: 0;
         /*background-color: #B1D7D2;*/
         background-color: #f4f7ed;
+        color: #303133;
+    }
+    .fa {
+        color: #eee;
     }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        margin: 0 auto;
+        margin: 50px auto;
         width: 1200px;
+    }
+    a {
+        text-decoration: none;
+        color: #303133;
+    }
+    a:visited, a:hover, a:active {
+        color: inherit;
+    }
+    #app, .el-container {
+        min-height: 600px;
+    }
+    #app > .el-container {
         box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1);
         background-color: #fff;
-    }
-    .el-container {
-        min-height: 100%;
     }
     .main-aside {
         width: 100px !important;
         border-right: 2px solid darkseagreen;
     }
-    .main-header {
-        line-height: 60px;
-        text-align: center;
-        font-size: 24px;
-    }
     .main-footer {
-        height: 30px !important;
+        height: 50px !important;
         text-align: center;
-        line-height: 30px;
+        line-height: 50px;
         font-size: 13px;
     }
     .avatar {
-        width: 50px;
-        height: 50px;
+        width: 60px;
+        height: 60px;
         margin: 20px auto;
     }
     .avatar img {
-        width: 50px;
-        height: 50px;
-        border-radius: 50px;
+        width: 60px;
+        height: 60px;
+        border-radius: 60px;
     }
     #app .el-menu {
         border: none;
