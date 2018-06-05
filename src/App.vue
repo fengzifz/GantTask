@@ -3,7 +3,7 @@
         <el-container>
             <el-aside class="main-aside">
                 <div class="avatar">
-                    <img src="./assets/logo.png" />
+                    <img src="./assets/avatar-01.png" />
                 </div>
                 <el-menu
                     default-active="1"
@@ -27,7 +27,7 @@
                 </el-menu>
             </el-aside>
             <el-container>
-                <el-header class="main-header">Header</el-header>
+                <el-header class="main-header">项目列表</el-header>
                 <el-main>
                     <router-view/>
                 </el-main>
@@ -50,16 +50,17 @@ export default {
     body {
         padding: 0;
         margin: 0;
+        /*background-color: #B1D7D2;*/
+        background-color: #f4f7ed;
     }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
+        margin: 0 auto;
+        width: 1200px;
+        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1);
+        background-color: #fff;
     }
     .el-container {
         min-height: 100%;
@@ -69,9 +70,9 @@ export default {
         border-right: 2px solid darkseagreen;
     }
     .main-header {
-        height: 40px !important;
-        line-height: 40px;
+        line-height: 60px;
         text-align: center;
+        font-size: 24px;
     }
     .main-footer {
         height: 30px !important;
@@ -80,7 +81,6 @@ export default {
         font-size: 13px;
     }
     .avatar {
-        border-radius: 25px;
         width: 50px;
         height: 50px;
         margin: 20px auto;
@@ -88,6 +88,7 @@ export default {
     .avatar img {
         width: 50px;
         height: 50px;
+        border-radius: 50px;
     }
     #app .el-menu {
         border: none;
