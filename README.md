@@ -1,32 +1,14 @@
-# ganttask
-
-Gantt Task
+# Gantt Task
 
 > A Vue.js project
 
-## Build Setup
+Gantt Task Management System(GTMS). A system which can manage tasks for your team, and create Gantt view automatically
+for your tasks.
 
-``` bash
-# install dependencies
-npm install
+There are many things to do.
 
-# serve with hot reload at localhost:8080
-npm run dev
+#### Below is screenshot:
+Projects list page
+![Project list](./demo-img/project-page-demo.png?raw=true "Projects List")
 
-# build for production with minification
-npm run build
 
-# build for production and view the bundle analyzer report
-npm run build --report
-
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
-npm test
-```
-
-For a detailed explanation on how things work, check out the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
