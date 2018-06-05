@@ -1,7 +1,7 @@
 <template>
     <div id="login">
         <el-card class="box-card">
-            <h1>Login</h1>
+            <h1>登录</h1>
             <el-form :model="userInfo" status-icon ref="userInfo" label-width="100px">
                 <el-form-item label="姓名" prop="username">
                     <el-input type="text" v-model="userInfo.username" auto-complete="off"></el-input>
