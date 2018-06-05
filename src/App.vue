@@ -8,22 +8,30 @@
                 <el-menu
                     default-active="1"
                     class="el-menu-vertical-demo">
-                    <el-menu-item index="1">
-                        <i class="el-icon-menu"></i>
-                        <router-link :to="'/'">项目</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="2">
-                        <i class="el-icon-document"></i>
-                        <span slot="title">汇报</span>
-                    </el-menu-item>
-                    <el-menu-item index="3">
-                        <i class="el-icon-time"></i>
-                        <span slot="title">动态</span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">设置</span>
-                    </el-menu-item>
+                    <router-link :to="'/'">
+                        <el-menu-item index="1">
+                            <i class="el-icon-menu"></i>
+                            <span>项目</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="2">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">汇报</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="3">
+                            <i class="el-icon-time"></i>
+                            <span slot="title">动态</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="4">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">设置</span>
+                        </el-menu-item>
+                    </router-link>
                 </el-menu>
             </el-aside>
             <el-container>
