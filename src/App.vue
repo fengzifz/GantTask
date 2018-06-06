@@ -21,8 +21,13 @@
                 </div>
             </el-aside>
             <el-aside class="main-aside">
-                <div class="avatar">
-                    <img src="./assets/avatar/10.png" />
+                <div class="user-info">
+                    <div class="avatar">
+                        <router-link :to="'/member/settings'">
+                            <img src="./assets/avatar/10.png" />
+                        </router-link>
+                    </div>
+                    <span class="name">陈子峰</span>
                 </div>
                 <el-menu
                     default-active="1"
@@ -143,6 +148,11 @@ export default {
         width: 60px;
         height: 60px;
         margin: 20px auto;
+        border-radius: 60px;
+        border: 1px solid transparent;
+    }
+    .avatar:hover {
+        border-color: darkseagreen;
     }
     .avatar img {
         width: 60px;
@@ -155,5 +165,12 @@ export default {
     .el-checkbox__inner {
         width: 16px;
         height: 16px;
+    }
+    .user-info {
+        text-align: center;
+        margin-bottom: 15px;
+    }
+    .user-info .name {
+        font-size: 12px;
     }
 </style>

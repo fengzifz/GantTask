@@ -29,7 +29,7 @@
 
 <script>
 export default {
-    name: 'ProjectDetails'
+    name: 'ProjectTasks'
 }
 </script>
 

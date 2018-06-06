@@ -7,7 +7,7 @@
         </el-row>
         <el-row class="member-list" :gutter="20">
             <el-col class="member-item" :span="3">
-                <el-button type="text" @click="projectDetails">
+                <el-button type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '10px' }">
                         <img src="../assets/avatar/1.png" width="80%" class="image">
                         <div class="member-info">
@@ -18,7 +18,7 @@
                 </el-button>
             </el-col>
             <el-col class="member-list" :span="3">
-                <el-button class="member-item" type="text" @click="projectDetails">
+                <el-button class="member-item" type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '10px' }">
                         <img src="../assets/avatar/2.png" width="80%" class="image">
                         <div class="member-info">
@@ -29,7 +29,7 @@
                 </el-button>
             </el-col>
             <el-col class="member-list" :span="3">
-                <el-button class="member-item" type="text" @click="projectDetails">
+                <el-button class="member-item" type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '10px' }">
                         <img src="../assets/avatar/3.png" width="80%" class="image">
                         <div class="member-info">
