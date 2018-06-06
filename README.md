@@ -2,10 +2,8 @@
 
 > A Vue.js project
 
-Gantt Task Management System(GTMS). A system which can manage tasks for your team, and create Gantt view automatically
+Gantt Task Management System(GTMS), which can manage tasks for your team, and create Gantt view automatically
 for your tasks.
-
-There are many things to do.
 
 #### Screenshot:
 Projects page
