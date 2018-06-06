@@ -9,19 +9,19 @@
                 <router-link :to="'/'" class="tooltip-item tooltip-chart" type="text">
                     <span class="fa fa-bar-chart fa-lg"></span>
                 </router-link>
-                <router-link :to="'/project/members'" class="tooltip-item tooltip-user" type="text">
+                <router-link :to="'/project/tasks/members'" class="tooltip-item tooltip-user" type="text">
                     <span class="fa fa-user fa-lg"></span>
                 </router-link>
-                <router-link :to="'/project/settings'" class="tooltip-item tooltip-setting" type="text">
+                <router-link :to="'/project/tasks/settings'" class="tooltip-item tooltip-setting" type="text">
                     <span class="fa fa-cog fa-lg"></span>
                 </router-link>
             </el-col>
         </el-row>
         <el-row class="task-list">
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" v-model="checked" /><span class="task-name">修改设计图</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" v-model="checked" /><span class="task-name">部署 HTTPS 加密证书</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" v-model="checked" /><span class="task-name">关于神经网络算法的讨论</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" v-model="checked" /><span class="task-name">参加区块链沙龙</span></el-col>
+            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">修改设计图</span></el-col>
+            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">部署 HTTPS 加密证书</span></el-col>
+            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">关于神经网络算法的讨论</span></el-col>
+            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">参加区块链沙龙</span></el-col>
             <el-col class="task-item" :span="24"><router-link class="completed-task" :to="'/'">已完成任务</router-link></el-col>
         </el-row>
     </div>
@@ -29,7 +29,12 @@
 
 <script>
 export default {
-    name: 'ProjectTasks'
+    name: 'ProjectTasks',
+    date () {
+        return {
+            checked: true
+        }
+    }
 }
 </script>
 

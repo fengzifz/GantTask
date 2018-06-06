@@ -28,12 +28,12 @@ export default new Router({
             component: ProjectSettings
         },
         {
-            path: '/project/members',
+            path: '/project/tasks/members',
             name: 'ProjectMembers',
             component: ProjectMembers
         },
         {
-            path: '/member/settings',
+            path: '/member/tasks/settings',
             name: 'MemberSettings',
             component: MemberSettings
         },

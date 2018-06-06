@@ -3,21 +3,15 @@
         <el-container>
             <el-aside class="sub-aside">
                 <div class="breadcrumb">
-                    <router-link class="breadcrumb-item" :to="'/'">
-                        <span class="fa fa-home fa-lg"></span>
-                    </router-link>
-                    <div class="breadcrumb-divide">
-                        <span class="el-icon-arrow-down"></span>
+                    <div v-for="(bc, index) in breadCrumb" :key="index">
+                        <router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">
+                            <span :class="'breadcrumb-icon ' + bc.iconCls"></span>
+                        </router-link>
+                        <span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>
+                        <div v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">
+                            <span class="el-icon-arrow-down"></span>
+                        </div>
                     </div>
-                    <router-link class="breadcrumb-item" :to="'/project/details'">
-                        <span class="fa fa-list-ul fa-lg"></span>
-                    </router-link>
-                    <div class="breadcrumb-divide">
-                        <span class="el-icon-arrow-down"></span>
-                    </div>
-                    <router-link class="breadcrumb-item breadcrumb-active" :to="'#'">
-                        <span class="fa fa-cog fa-lg"></span>
-                    </router-link>
                 </div>
             </el-aside>
             <el-aside class="main-aside">
@@ -69,8 +63,46 @@
 </template>
 
 <script>
+import IconMap from './config/icon-map'
 export default {
-    name: 'App'
+    name: 'App',
+    data () {
+        return {
+            IconMap: IconMap,
+            breadCrumb: []
+        }
+    },
+    methods: {
+        updateBreadCrumb: function () {
+            this.breadCrumb = []
+            let self = this
+            let pathArr = this.$route.path.split('/').filter(function (el) {
+                return el.length !== 0
+            })
+
+            if (pathArr.length === 0) {
+                this.breadCrumb.push({
+                    path: IconMap['project'].path,
+                    iconCls: IconMap['project'].iconCls
+                })
+            }
+
+            pathArr.forEach(function (el) {
+                self.breadCrumb.push({
+                    path: IconMap[el].path,
+                    iconCls: IconMap[el].iconCls
+                })
+            })
+        }
+    },
+    watch: {
+        $route () {
+            this.updateBreadCrumb()
+        }
+    },
+    created: function () {
+        this.updateBreadCrumb()
+    }
 }
 </script>
 
@@ -81,7 +113,6 @@ export default {
     body {
         padding: 0;
         margin: 0;
-        /*background-color: #B1D7D2;*/
         background-color: #f4f7ed;
         color: #303133;
         font-size: 14px;
@@ -96,8 +127,13 @@ export default {
     .breadcrumb a {
         font-size: 16px;
     }
-    .breadcrumb span.fa {
+    .breadcrumb  span.breadcrumb-icon {
+        color: #bfbfbf;
+        font-size: 14px;
+    }
+    .breadcrumb a span.breadcrumb-icon {
         color: #8FBC8F;
+        font-size: 14px;
     }
     .breadcrumb .breadcrumb-divide {
         margin: 15px 0;
