@@ -1,6 +1,25 @@
 <template>
     <div id="app">
         <el-container>
+            <el-aside class="sub-aside">
+                <div class="breadcrumb">
+                    <router-link class="breadcrumb-item" :to="'/'">
+                        <span class="fa fa-home fa-lg"></span>
+                    </router-link>
+                    <div class="breadcrumb-divide">
+                        <span class="el-icon-arrow-down"></span>
+                    </div>
+                    <router-link class="breadcrumb-item" :to="'/project/details'">
+                        <span class="fa fa-list-ul fa-lg"></span>
+                    </router-link>
+                    <div class="breadcrumb-divide">
+                        <span class="el-icon-arrow-down"></span>
+                    </div>
+                    <router-link class="breadcrumb-item breadcrumb-active" :to="'#'">
+                        <span class="fa fa-cog fa-lg"></span>
+                    </router-link>
+                </div>
+            </el-aside>
             <el-aside class="main-aside">
                 <div class="avatar">
                     <img src="./assets/avatar/10.png" />
@@ -65,6 +84,26 @@ export default {
     .fa {
         color: #eee;
     }
+    .breadcrumb {
+        text-align: center;
+        padding-top: 30px;
+    }
+    .breadcrumb a {
+        font-size: 16px;
+    }
+    .breadcrumb span.fa {
+        color: #8FBC8F;
+    }
+    .breadcrumb .breadcrumb-divide {
+        margin: 15px 0;
+    }
+    .breadcrumb .breadcrumb-divide span {
+        color: #303133;
+        font-size: 12px;
+    }
+    .breadcrumb-active span.fa {
+        color: #c0c4cc;
+    }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
         -webkit-font-smoothing: antialiased;
@@ -88,7 +127,11 @@ export default {
     }
     .main-aside {
         width: 100px !important;
-        border-right: 2px solid darkseagreen;
+        border-right: 3px solid darkseagreen;
+    }
+    .sub-aside {
+        width: 50px !important;
+        background-color: #f5f7fa;
     }
     .main-footer {
         height: 50px !important;

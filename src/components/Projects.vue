@@ -29,7 +29,7 @@
                     <el-card shadow="hover" :body-style="{ padding: '0px' }">
                         <img src="../assets/pro-img/3.png" width="100%" class="image">
                         <div style="padding: 14px;">
-                            <span>开元+</span>
+                            <span>内部 OA 开发</span>
                         </div>
                     </el-card>
                 </el-button>
