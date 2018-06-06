@@ -6,15 +6,15 @@
                 <span class="desc">部门的常规任务列表</span>
             </el-col>
             <el-col class="tooltip-group" :span="3" :offset="18">
-                <el-button class="tooltip-chart" type="text">
+                <router-link :to="'/'" class="tooltip-item tooltip-chart" type="text">
                     <span class="fa fa-bar-chart fa-lg"></span>
-                </el-button>
-                <el-button class="tooltip-user" type="text">
+                </router-link>
+                <router-link :to="'/'" class="tooltip-item tooltip-user" type="text">
                     <span class="fa fa-user fa-lg"></span>
-                </el-button>
-                <el-button class="tooltip-setting" type="text">
+                </router-link>
+                <router-link :to="'/project/settings'" class="tooltip-item tooltip-setting" type="text">
                     <span class="fa fa-cog fa-lg"></span>
-                </el-button>
+                </router-link>
             </el-col>
         </el-row>
         <el-row class="task-list">
@@ -54,10 +54,11 @@ export default {
     .tooltip-group {
         text-align: right;
     }
-    .tooltip-group button {
+    .tooltip-group .tooltip-item {
         margin-left: 20px;
+        line-height: 40px;
     }
-    .tooltip-group button:hover span.fa {
+    .tooltip-group .tooltip-item:hover span.fa {
         color: darkseagreen;
     }
     .completed-task {
