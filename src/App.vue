@@ -3,7 +3,7 @@
         <el-container>
             <el-aside class="main-aside">
                 <div class="avatar">
-                    <img src="./assets/avatar/2.png" />
+                    <img src="./assets/avatar/10.png" />
                 </div>
                 <el-menu
                     default-active="1"
@@ -79,7 +79,7 @@ export default {
         color: inherit;
     }
     #app, .el-container {
-        min-height: 600px;
+        min-height: 650px;
     }
     #app > .el-container {
         box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1);
@@ -107,5 +107,9 @@ export default {
     }
     #app .el-menu {
         border: none;
+    }
+    .el-checkbox__inner {
+        width: 16px;
+        height: 16px;
     }
 </style>
