@@ -1,29 +1,56 @@
 <template>
     <div id="app">
         <el-container>
+            <el-aside class="sub-aside">
+                <div class="breadcrumb">
+                    <router-link class="breadcrumb-item" :to="'/'">
+                        <span class="fa fa-home fa-lg"></span>
+                    </router-link>
+                    <div class="breadcrumb-divide">
+                        <span class="el-icon-arrow-down"></span>
+                    </div>
+                    <router-link class="breadcrumb-item" :to="'/project/details'">
+                        <span class="fa fa-list-ul fa-lg"></span>
+                    </router-link>
+                    <div class="breadcrumb-divide">
+                        <span class="el-icon-arrow-down"></span>
+                    </div>
+                    <router-link class="breadcrumb-item breadcrumb-active" :to="'#'">
+                        <span class="fa fa-cog fa-lg"></span>
+                    </router-link>
+                </div>
+            </el-aside>
             <el-aside class="main-aside">
                 <div class="avatar">
-                    <img src="./assets/avatar/2.png" />
+                    <img src="./assets/avatar/10.png" />
                 </div>
                 <el-menu
                     default-active="1"
                     class="el-menu-vertical-demo">
-                    <el-menu-item index="1">
-                        <i class="el-icon-menu"></i>
-                        <router-link :to="'/'">项目</router-link>
-                    </el-menu-item>
-                    <el-menu-item index="2">
-                        <i class="el-icon-document"></i>
-                        <span slot="title">汇报</span>
-                    </el-menu-item>
-                    <el-menu-item index="3">
-                        <i class="el-icon-time"></i>
-                        <span slot="title">动态</span>
-                    </el-menu-item>
-                    <el-menu-item index="4">
-                        <i class="el-icon-setting"></i>
-                        <span slot="title">设置</span>
-                    </el-menu-item>
+                    <router-link :to="'/'">
+                        <el-menu-item index="1">
+                            <i class="el-icon-menu"></i>
+                            <span>项目</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="2">
+                            <i class="el-icon-document"></i>
+                            <span slot="title">汇报</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="3">
+                            <i class="el-icon-time"></i>
+                            <span slot="title">动态</span>
+                        </el-menu-item>
+                    </router-link>
+                    <router-link :to="'/'">
+                        <el-menu-item index="4">
+                            <i class="el-icon-setting"></i>
+                            <span slot="title">设置</span>
+                        </el-menu-item>
+                    </router-link>
                 </el-menu>
             </el-aside>
             <el-container>
@@ -52,9 +79,30 @@ export default {
         /*background-color: #B1D7D2;*/
         background-color: #f4f7ed;
         color: #303133;
+        font-size: 14px;
     }
     .fa {
         color: #eee;
+    }
+    .breadcrumb {
+        text-align: center;
+        padding-top: 30px;
+    }
+    .breadcrumb a {
+        font-size: 16px;
+    }
+    .breadcrumb span.fa {
+        color: #8FBC8F;
+    }
+    .breadcrumb .breadcrumb-divide {
+        margin: 15px 0;
+    }
+    .breadcrumb .breadcrumb-divide span {
+        color: #303133;
+        font-size: 12px;
+    }
+    .breadcrumb-active span.fa {
+        color: #c0c4cc;
     }
     #app {
         font-family: 'Avenir', Helvetica, Arial, sans-serif;
@@ -71,7 +119,7 @@ export default {
         color: inherit;
     }
     #app, .el-container {
-        min-height: 600px;
+        min-height: 650px;
     }
     #app > .el-container {
         box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1);
@@ -79,7 +127,11 @@ export default {
     }
     .main-aside {
         width: 100px !important;
-        border-right: 2px solid darkseagreen;
+        border-right: 3px solid darkseagreen;
+    }
+    .sub-aside {
+        width: 50px !important;
+        background-color: #f5f7fa;
     }
     .main-footer {
         height: 50px !important;
@@ -99,5 +151,9 @@ export default {
     }
     #app .el-menu {
         border: none;
+    }
+    .el-checkbox__inner {
+        width: 16px;
+        height: 16px;
     }
 </style>

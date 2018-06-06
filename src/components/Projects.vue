@@ -1,10 +1,10 @@
 <template>
     <div id="projects-list">
-        <el-row>
-            <el-col :span="3">
-                <h1 class="title">项目列表</h1>
-            </el-col>
-            <el-col class="view-group" :span="3" :offset="18">
+        <el-row class="header">
+            <el-col class="view-group" :span="6" :offset="18">
+                <el-button class="new-pro" type="text">
+                    <span>新建项目</span>
+                </el-button>
                 <el-button class="view-grid" type="text">
                     <span class="fa fa-th fa-lg"></span>
                 </el-button>
@@ -14,7 +14,27 @@
             </el-col>
         </el-row>
         <el-row :gutter="30">
-            <el-col :span="4" v-for="(o) in 7" :key="o">
+            <el-col :span="4">
+                <el-button type="text" @click="projectDetails">
+                    <el-card shadow="hover" :body-style="{ padding: '0px' }">
+                        <img src="../assets/pro-img/1.png" width="100%" class="image">
+                        <div style="padding: 14px;">
+                            <span>部门任务</span>
+                        </div>
+                    </el-card>
+                </el-button>
+            </el-col>
+            <el-col :span="4">
+                <el-button type="text" @click="projectDetails">
+                    <el-card shadow="hover" :body-style="{ padding: '0px' }">
+                        <img src="../assets/pro-img/3.png" width="100%" class="image">
+                        <div style="padding: 14px;">
+                            <span>内部 OA 开发</span>
+                        </div>
+                    </el-card>
+                </el-button>
+            </el-col>
+            <el-col :span="4" v-for="(o) in 3" :key="o">
                 <el-button type="text" @click="projectDetails">
                     <el-card shadow="hover" :body-style="{ padding: '0px' }">
                         <img src="../assets/pro-img/2.png" width="100%" class="image">
@@ -48,10 +68,6 @@ export default {
 <style scoped>
     .card-wrapper {
         padding: 20px 20px;
-    }
-    h1.title,
-    .view-group {
-        margin-top: 1em;
     }
     .view-group {
         text-align: right;
