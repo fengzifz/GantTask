@@ -12,7 +12,7 @@ Projects page
 ![Project list](./demo-img/project-list.png?raw=true "Projects List")
 
 Task page
-![Task list](./demo-img/task-list.png?raw=true "Task List")
+![Task list](./demo-img/task-page.png?raw=true "Task List")
 
 Project Settings page
 ![Project Setting list](./demo-img/project-setting.png?raw=true "Project Setting")
