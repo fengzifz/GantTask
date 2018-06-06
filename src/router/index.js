@@ -5,6 +5,7 @@ import Login from '@/components/Login'
 import Projects from '@/components/Projects'
 import ProjectDetails from '@/components/ProjectDetails'
 import ProjectSettings from '@/components/ProjectSettings'
+import ProjectMembers from '@/components/ProjectMembers'
 
 Vue.use(Router)
 
@@ -24,6 +25,11 @@ export default new Router({
             path: '/project/settings',
             name: 'ProjectSettings',
             component: ProjectSettings
+        },
+        {
+            path: '/project/members',
+            name: 'ProjectMembers',
+            component: ProjectMembers
         },
         {
             path: '/home',

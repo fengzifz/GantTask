@@ -9,7 +9,7 @@
                 <router-link :to="'/'" class="tooltip-item tooltip-chart" type="text">
                     <span class="fa fa-bar-chart fa-lg"></span>
                 </router-link>
-                <router-link :to="'/'" class="tooltip-item tooltip-user" type="text">
+                <router-link :to="'/project/members'" class="tooltip-item tooltip-user" type="text">
                     <span class="fa fa-user fa-lg"></span>
                 </router-link>
                 <router-link :to="'/project/settings'" class="tooltip-item tooltip-setting" type="text">
