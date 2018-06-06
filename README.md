@@ -7,8 +7,16 @@ for your tasks.
 
 There are many things to do.
 
-#### Below is screenshot:
-Projects list page
-![Project list](./demo-img/project-page-demo.png?raw=true "Projects List")
+#### Screenshot:
+Projects page
+![Project list](./demo-img/project-list.png?raw=true "Projects List")
 
+Task page
+![Task list](./demo-img/task-list.png?raw=true "Task List")
+
+Project Settings page
+![Project Setting list](./demo-img/project-setting.png?raw=true "Project Setting")
+
+Project Members page
+![Project Members list](./demo-img/project-user.png?raw=true "Project Members")
 

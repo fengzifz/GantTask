@@ -1,7 +1,7 @@
 <template>
     <div id="projects-list">
         <el-row class="header">
-            <el-col class="view-group" :span="3" :offset="21">
+            <el-col class="view-group" :span="6" :offset="18">
                 <el-button class="new-pro" type="text">
                     <span>新建项目</span>
                 </el-button>
