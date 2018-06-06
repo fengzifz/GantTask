@@ -60,6 +60,7 @@ export default {
         /*background-color: #B1D7D2;*/
         background-color: #f4f7ed;
         color: #303133;
+        font-size: 14px;
     }
     .fa {
         color: #eee;
