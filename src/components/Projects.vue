@@ -15,7 +15,7 @@
         </el-row>
         <el-row :gutter="30">
             <el-col :span="4">
-                <el-button type="text" @click="projectDetails">
+                <el-button type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '0px' }">
                         <img src="../assets/pro-img/1.png" width="100%" class="image">
                         <div style="padding: 14px;">
@@ -25,7 +25,7 @@
                 </el-button>
             </el-col>
             <el-col :span="4">
-                <el-button type="text" @click="projectDetails">
+                <el-button type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '0px' }">
                         <img src="../assets/pro-img/3.png" width="100%" class="image">
                         <div style="padding: 14px;">
@@ -35,7 +35,7 @@
                 </el-button>
             </el-col>
             <el-col :span="4" v-for="(o) in 3" :key="o">
-                <el-button type="text" @click="projectDetails">
+                <el-button type="text" @click="goToTasks">
                     <el-card shadow="hover" :body-style="{ padding: '0px' }">
                         <img src="../assets/pro-img/2.png" width="100%" class="image">
                         <div style="padding: 14px;">
@@ -58,8 +58,8 @@ export default {
         }
     },
     methods: {
-        projectDetails: function () {
-            router.push('/project/details')
+        goToTasks: function () {
+            router.push('/project/tasks')
         }
     }
 }
