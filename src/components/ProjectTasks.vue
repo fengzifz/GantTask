@@ -18,10 +18,25 @@
             </el-col>
         </el-row>
         <el-row class="task-list">
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">修改设计图</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">部署 HTTPS 加密证书</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">关于神经网络算法的讨论</span></el-col>
-            <el-col class="task-item" :span="24"><el-checkbox class="task-check" /><span class="task-name">参加区块链沙龙</span></el-col>
+            <el-col class="task-item" :span="24">
+                <el-checkbox class="task-check" />
+                <span class="task-name">修改设计图</span>
+                <el-tag size="mini" type="info" class="task-in-charge">陈子峰</el-tag>
+            </el-col>
+            <el-col class="task-item" :span="24">
+                <el-checkbox class="task-check" />
+                <span class="task-name">部署 HTTPS 加密证书</span>
+                <el-tag size="mini" type="info" class="task-in-charge">梁晓东</el-tag>
+            </el-col>
+            <el-col class="task-item" :span="24">
+                <el-checkbox class="task-check" />
+                <span class="task-name">关于神经网络算法的讨论</span>
+                <el-tag size="mini" type="info" class="task-in-charge">李耀鹏</el-tag>
+            </el-col>
+            <el-col class="task-item" :span="24">
+                <el-checkbox class="task-check" />
+                <span class="task-name">参加区块链沙龙</span>
+            </el-col>
             <el-col class="task-item" :span="24"><router-link class="completed-task" :to="'/'">已完成任务</router-link></el-col>
         </el-row>
     </div>
@@ -71,5 +86,8 @@ export default {
     }
     .task-list .task-item {
         margin-bottom: 10px;
+    }
+    .task-no-charge, .task-in-charge {
+        /*font-size: 8px;*/
     }
 </style>
