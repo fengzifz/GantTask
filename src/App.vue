@@ -125,7 +125,7 @@ export default {
         padding-top: 30px;
     }
     .breadcrumb a {
-        font-size: 16px;
+        font-size: 14px;
     }
     .breadcrumb  span.breadcrumb-icon {
         color: #bfbfbf;
@@ -133,10 +133,9 @@ export default {
     }
     .breadcrumb a span.breadcrumb-icon {
         color: #8FBC8F;
-        font-size: 14px;
     }
     .breadcrumb .breadcrumb-divide {
-        margin: 15px 0;
+        margin: 10px 0;
     }
     .breadcrumb .breadcrumb-divide span {
         color: #303133;

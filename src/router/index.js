@@ -23,7 +23,7 @@ export default new Router({
             component: ProjectTasks
         },
         {
-            path: '/project/settings',
+            path: '/project/tasks/settings',
             name: 'ProjectSettings',
             component: ProjectSettings
         },
@@ -33,7 +33,7 @@ export default new Router({
             component: ProjectMembers
         },
         {
-            path: '/member/tasks/settings',
+            path: '/member/settings',
             name: 'MemberSettings',
             component: MemberSettings
         },
