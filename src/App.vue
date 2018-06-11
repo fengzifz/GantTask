@@ -117,8 +117,29 @@ export default {
         color: #303133;
         font-size: 14px;
     }
+    hr {
+        display: block;
+        height: 1px;
+        border: 0;
+        border-top: 1px solid #ddebdd;
+        margin: 1em 0;
+        padding: 0;
+    }
+    h1 .el-checkbox__inner {
+        width: 18px;
+        height: 18px;
+    }
+    h1 .el-checkbox__label,
+    h1 {
+        font-size: 18px;
+        line-height: 40px;
+    }
     .fa {
         color: #eee;
+    }
+    a:hover span,
+    a:hover {
+        color: #8FBC8F;
     }
     .breadcrumb {
         text-align: center;
@@ -207,5 +228,13 @@ export default {
     }
     .user-info .name {
         font-size: 12px;
+    }
+    .el-form--label-top .el-form-item__label {
+        font-size: 8px;
+        padding: 0;
+        line-height: 16px;
+    }
+    .el-form-item--mini.el-form-item {
+        margin-bottom: 5px;
     }
 </style>

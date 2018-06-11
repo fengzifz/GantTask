@@ -7,6 +7,7 @@ import ProjectTasks from '@/components/ProjectTasks'
 import ProjectSettings from '@/components/ProjectSettings'
 import ProjectMembers from '@/components/ProjectMembers'
 import MemberSettings from '@/components/MemberSettings'
+import ProjectTaskDetails from '@/components/ProjectTaskDetails'
 
 Vue.use(Router)
 
@@ -31,6 +32,11 @@ export default new Router({
             path: '/project/tasks/members',
             name: 'ProjectMembers',
             component: ProjectMembers
+        },
+        {
+            path: '/project/tasks/details',
+            name: 'ProjectTaskDetails',
+            component: ProjectTaskDetails
         },
         {
             path: '/member/settings',
