@@ -5,9 +5,12 @@
                 <h1 class="title">部门任务</h1>
                 <span class="desc">部门的常规任务列表</span>
             </el-col>
-            <el-col class="tooltip-group" :span="3" :offset="18">
+            <el-col class="tooltip-group" :span="4" :offset="17">
+                <router-link :to="'/project/tasks/pro_gant'" class="tooltip-item tooltip-chart" type="text">
+                    <span class="fa fa-tasks fa-lg"></span>
+                </router-link>
                 <router-link :to="'/'" class="tooltip-item tooltip-chart" type="text">
-                    <span class="fa fa-bar-chart fa-lg"></span>
+                    <span class="fa fa-area-chart fa-lg"></span>
                 </router-link>
                 <router-link :to="'/project/tasks/members'" class="tooltip-item tooltip-user" type="text">
                     <span class="fa fa-user fa-lg"></span>
