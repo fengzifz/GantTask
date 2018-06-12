@@ -1,19 +1,30 @@
 <template>
     <div id="app">
+        <ul class="breadcrumb">
+            <li v-for="(bc, index) in breadCrumb" :key="index">
+                <router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">
+                    <span :class="'breadcrumb-icon ' + bc.iconCls"></span>
+                </router-link>
+                <span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>
+                <span v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">
+                    <span class="el-icon-arrow-right"></span>
+                </span>
+            </li>
+        </ul>
         <el-container>
-            <el-aside class="sub-aside">
-                <div class="breadcrumb">
-                    <div v-for="(bc, index) in breadCrumb" :key="index">
-                        <router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">
-                            <span :class="'breadcrumb-icon ' + bc.iconCls"></span>
-                        </router-link>
-                        <span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>
-                        <div v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">
-                            <span class="el-icon-arrow-down"></span>
-                        </div>
-                    </div>
-                </div>
-            </el-aside>
+            <!--<el-aside class="sub-aside">-->
+                <!--<div class="breadcrumb">-->
+                    <!--<div v-for="(bc, index) in breadCrumb" :key="index">-->
+                        <!--<router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">-->
+                            <!--<span :class="'breadcrumb-icon ' + bc.iconCls"></span>-->
+                        <!--</router-link>-->
+                        <!--<span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>-->
+                        <!--<div v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">-->
+                            <!--<span class="el-icon-arrow-down"></span>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</el-aside>-->
             <el-aside class="main-aside">
                 <div class="user-info">
                     <div class="avatar">
@@ -146,17 +157,17 @@ export default {
         padding-top: 30px;
     }
     .breadcrumb a {
-        font-size: 14px;
+        font-size: 20px;
     }
     .breadcrumb  span.breadcrumb-icon {
         color: #bfbfbf;
-        font-size: 14px;
+        font-size: 20px;
     }
     .breadcrumb a span.breadcrumb-icon {
         color: #8FBC8F;
     }
     .breadcrumb .breadcrumb-divide {
-        margin: 10px 0;
+        margin: 10px;
     }
     .breadcrumb .breadcrumb-divide span {
         color: #303133;
@@ -170,7 +181,7 @@ export default {
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         margin: 50px auto;
-        width: 1200px;
+        width: 1300px;
     }
     a {
         text-decoration: none;
@@ -229,12 +240,22 @@ export default {
     .user-info .name {
         font-size: 12px;
     }
-    .el-form--label-top .el-form-item__label {
+    body .el-form--label-top .el-form-item__label {
         font-size: 8px;
         padding: 0;
         line-height: 16px;
     }
-    .el-form-item--mini.el-form-item {
+    body .el-form-item--mini.el-form-item {
         margin-bottom: 5px;
+    }
+    ul.breadcrumb {
+        padding: 0;
+        margin: 0;
+        height: 40px;
+    }
+    ul.breadcrumb li {
+        float: left;
+        list-style-type: none;
+        line-height: 20px;
     }
 </style>
