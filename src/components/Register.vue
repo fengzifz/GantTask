@@ -1,17 +1,17 @@
 <template>
-    <div id="login">
-        <el-card class="box-card" v-loading="loading"
-                 element-loading-spinner="el-icon-loading">
-            <h1>登录</h1>
+    <div id="login" v-loading="loading">
+        <el-card class="box-card">
+            <h1>注册</h1>
             <el-form :model="userInfo" status-icon ref="userInfo" label-width="100px">
                 <el-input type="text" v-model="userInfo.email" auto-complete="off" placeholder="请输入邮箱"></el-input>
                 <p></p>
-                <el-input type="password" v-model="userInfo.password" auto-complete="off" placeholder="请输入密码"></el-input>
+                <el-input type="password" v-model="userInfo.password" auto-complete="off" placeholder="请输入密码，至少包含6位数"></el-input>
                 <p></p>
-                <button @click="login" class="login-btn">登录</button>
+                <el-input type="password" v-model="userInfo.passwordAgain" auto-complete="off" placeholder="再次确认密码"></el-input>
+                <p></p>
+                <el-button @click="register" type="primary" size="small" class="register-btn">注册</el-button>
                 <el-row class="bottom-row">
-                    <el-col :span="20"><el-button type="text" @click="forgotAction">忘记密码?</el-button></el-col>
-                    <el-col :span="4"><el-button type="text" @click="registerAction">立即注册</el-button></el-col>
+                    <el-col :span="20"><el-button type="text" @click="loginAction">已有账号?直接登录</el-button></el-col>
                 </el-row>
             </el-form>
         </el-card>
@@ -23,36 +23,33 @@ import route from '../router'
 import axios from 'axios'
 import {mapState} from 'vuex'
 export default {
-    name: 'Login',
+    name: 'Register',
     data () {
         return {
             loading: false,
-            userInfo: {email: '', password: ''}
+            userInfo: {email: '', password: '', passwordAgain: ''}
         }
     },
     computed: {
         ...mapState({
-            apiToken: state => state.user.apiToken
+            // isLogin: state => state.user.isLogin
         })
     },
     methods: {
-        login: function () {
+        register: function () {
             this.loading = true
-            axios.post('user/login', {
-                app_key: 'xxxxxxxxxx',
+            axios.post('user/register', {
+                app_key: 'xxxxxxxx',
                 email: this.userInfo.email,
-                password: this.userInfo.password
+                password: this.userInfo.password,
+                password_confirmation: this.userInfo.passwordAgain
             }).then((res) => {
                 if (res.data.error) {
                     this.$message.error(res.data.message)
                 } else {
                     this.$message.success(res.data.message)
-                    this.$store.dispatch('user/login', {
-                        apiToken: res.data.data.api_token,
-                        userId: res.data.data.user_id,
-                        userAvatar: res.data.data.avatar,
-                        name: res.data.data.name
-                    })
+                    this.$store.dispatch('user/logout')
+                    route.push('/login')
                 }
                 this.loading = false
             })
@@ -66,13 +63,9 @@ export default {
             let token = this.apiToken
             return !!(token && token !== null && token !== 'undefined' && token !== 'null' && token !== undefined)
         },
-        forgotAction: function () {
-            route.push('/forgot_password')
-        },
-        registerAction: function () {
-            route.push('/register')
+        loginAction: function () {
+            route.push('/login')
         }
-
     },
     created: function () {
         this.checkLogin()
@@ -101,14 +94,8 @@ export default {
     .box-card h1 {
         text-align: center;
     }
-    .login-btn {
+    .register-btn {
         width: 100%;
-        height: 35px;
-        color: white;
-        background-color: #4CAF50;
-        border: none;
-        border-radius: 3px;
-        font-size: 12pt;
     }
     .bottom-row p {
         text-align: center;

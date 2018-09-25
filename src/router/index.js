@@ -1,14 +1,23 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Home from '@/components/Home'
 import Login from '@/components/Login'
 import Projects from '@/components/Projects'
-import ProjectTasks from '@/components/ProjectTasks'
+import Task from '@/components/Task'
 import ProjectSettings from '@/components/ProjectSettings'
 import ProjectMembers from '@/components/ProjectMembers'
 import MemberSettings from '@/components/MemberSettings'
-import ProjectTaskDetails from '@/components/ProjectTaskDetails'
-import ProjectGant from '@/components/ProjectGant'
+import TaskDetails from '@/components/TaskDetails'
+import TaskCompleted from '@/components/TaskCompleted'
+import GantChart from '@/components/GantChart'
+import Team from '@/components/Team'
+import PersonalSettings from '@/components/PersonalSettings'
+import ForgotPassword from '@/components/ForgotPassword'
+import ResetPassword from '@/components/ResetPassword'
+import Register from '@/components/Register'
+import TeamSettings from '@/components/TeamSettings'
+import Join from '@/components/Join'
+import InviteMembers from '@/components/InviteMembers'
+import MemberManages from '@/components/MemberManages'
 
 Vue.use(Router)
 
@@ -20,14 +29,19 @@ export default new Router({
             component: Projects
         },
         {
-            path: '/project/tasks',
-            name: 'ProjectTasks',
-            component: ProjectTasks
+            path: '/team',
+            name: 'Team',
+            component: Team
         },
         {
-            path: '/project/tasks/pro_gant',
-            name: 'ProjectGant',
-            component: ProjectGant
+            path: '/project/tasks',
+            name: 'Task',
+            component: Task
+        },
+        {
+            path: '/project/tasks/gant',
+            name: 'GantChart',
+            component: GantChart
         },
         {
             path: '/project/tasks/settings',
@@ -40,9 +54,14 @@ export default new Router({
             component: ProjectMembers
         },
         {
-            path: '/project/tasks/details',
-            name: 'ProjectTaskDetails',
-            component: ProjectTaskDetails
+            path: '/project/tasks/details/:id',
+            name: 'TaskDetails',
+            component: TaskDetails
+        },
+        {
+            path: '/project/tasks/completed',
+            name: 'TaskCompleted',
+            component: TaskCompleted
         },
         {
             path: '/member/settings',
@@ -50,14 +69,50 @@ export default new Router({
             component: MemberSettings
         },
         {
-            path: '/home',
-            name: 'Home',
-            component: Home
+            path: '/personal/settings',
+            name: 'PersonalSettings',
+            component: PersonalSettings
+        },
+        {
+            path: '/forgot_password',
+            name: 'ForgotPassword',
+            component: ForgotPassword
+        },
+        {
+            path: '/reset_password/:id',
+            name: 'ResetPassword',
+            component: ResetPassword
         },
         {
             path: '/login',
             name: 'Login',
             component: Login
+        },
+        {
+            path: '/register',
+            name: 'Register',
+            component: Register
+        },
+        {
+            path: '/team_settings',
+            name: 'TeamSettings',
+            component: TeamSettings
+        },
+        {
+            path: '/join/:id/:name/:email/:flag',
+            name: 'Join',
+            component: Join
+        },
+        {
+            path: '/invite_members',
+            name: 'InviteMembers',
+            component: InviteMembers
+        },
+        {
+            path: '/member/manages',
+            name: 'MemberManages',
+            component: MemberManages
         }
+
     ]
 })

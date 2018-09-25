@@ -4,10 +4,10 @@
              v-loading="loading">
         <div id="Team-member">
             <h2 class="title">
-                <i class="fa fa-bell"></i>&nbsp;&nbsp;我的动态
+                <i class="fa fa-bell"></i>&nbsp;&nbsp;{{ userName }}的设置
             </h2>
             <div class="settings-content">
-                <el-row>
+                <el-row class="user-info">
                     <el-col :span="2" :model="avatarInfo">
                         <div class="avatar">
                             <img class="pic" :src="host + '/storage/' + avatarInfo.image" />
@@ -19,19 +19,29 @@
                             <el-row><label><p>{{ userEmail }}</p></label></el-row>
                         </div>
                     </el-col>
-                    <el-col :span="2" v-if="isAdmin">
-                        <el-button type="text" @click="memberManage">管理用户</el-button>
-                    </el-col>
                 </el-row>
-                <div class="detail-content">
-                <el-tabs v-model="activeName" @tab-click="handleClick">
-                <el-tab-pane label="任务" name="first">任务</el-tab-pane>
-                <el-tab-pane label="关注" name="second">关注</el-tab-pane>
-                <el-tab-pane label="日程" name="third">日程</el-tab-pane>
-                <el-tab-pane label="汇报" name="fourth">汇报</el-tab-pane>
-                <el-tab-pane label="邮件" name="fifth">邮件</el-tab-pane>
-                </el-tabs>
-                </div>
+                <el-row>
+                    <div class="member-content">
+                        <h2>从团队中移除{{ userName }}</h2>
+                        <p>被移除的成员，将不能再访问 GantTask 上的项目信息，但跟他相关的数据不会被删除。</p>
+                        <el-button type="text" @click="deletehandle">了解，确定删除{{ userName }}</el-button>
+                    </div>
+                </el-row>
+                <el-row>
+                    <div class="member-content">
+                        <h2>权限</h2>
+                        <p>管理员可以邀请成员</p>
+                        <el-form ref="form" :model="form">
+                            <el-form-item label="">
+                                <el-radio-group v-model="resource" @change="handleChange">
+                                    <el-radio label=2 >管理员</el-radio>
+                                    <el-radio label=3 >普通用户</el-radio>
+                                </el-radio-group>
+                            </el-form-item>
+                        </el-form>
+                        <el-button type="primary" @click="changeRole">保存设置</el-button>
+                    </div>
+                </el-row>
             </div>
         </div>
     </el-main>
@@ -42,7 +52,7 @@ import {mapState} from 'vuex'
 import axios from 'axios'
 import router from '../router/index'
 export default {
-    name: 'PersonalSettings',
+    name: 'memberManage',
     data () {
         return {
             loading: false,
@@ -51,7 +61,8 @@ export default {
             userName: '',
             userEmail: '',
             isAdmin: false,
-            userid: 0
+            resource: '',
+            roleId: 3
         }
     },
     computed: {
@@ -76,14 +87,46 @@ export default {
                         this.userName = res.data.data[0].name
                         this.userEmail = res.data.data[0].email
                         this.avatarInfo.image = res.data.data[0].avatar
-                        this.userid = res.data.data[0].id
-                        this.isAdmin = (this.apiToken === res.data.data[0].api_token) ? false : res.data.isAdmin
+                        this.isAdmin = res.data.isAdmin
                     }
                     this.allLoading = false
                 })
         },
-        memberManage: function () {
-            router.push({path: '/member/manages', query: {userid: this.userid}})
+        deletehandle: function () {
+            this.loading = true
+            axios.post('team/mass_destroy', {
+                api_token: this.apiToken,
+                email_arr: this.userEmail,
+                team_id: this.currentTeamId
+            }).then((res) => {
+                if (res.data.error) {
+                    this.$message.error(res.data.message)
+                } else {
+                    this.$message.success(res.data.message)
+                    router.push('/team_settings')
+                }
+                this.loading = false
+            })
+        },
+        changeRole: function () {
+            this.loading = true
+            axios.post('team/change_role', {
+                api_token: this.apiToken,
+                user_email: this.userEmail,
+                team_id: this.currentTeamId,
+                abilities: this.roleId
+            }).then((res) => {
+                if (res.data.error) {
+                    this.$message.error(res.data.message)
+                } else {
+                    this.$message.success(res.data.message)
+                    router.push('/team_settings')
+                }
+                this.loading = false
+            })
+        },
+        handleChange (val) {
+            this.roleId = val
         }
     }
 }
@@ -91,6 +134,14 @@ export default {
 <style scoped>
     .settings-content {
         background-color: #ffffff;
+        padding-bottom: 30px;
+        padding-left: 30px;
+    }
+    .member-content {
+        margin-left: 30px;
+    }
+    .user-info {
+        margin-left: 15px;
     }
     .form-content {
         width: 50%;

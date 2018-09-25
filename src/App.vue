@@ -1,261 +1,337 @@
 <template>
     <div id="app">
-        <ul class="breadcrumb">
-            <li v-for="(bc, index) in breadCrumb" :key="index">
-                <router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">
-                    <span :class="'breadcrumb-icon ' + bc.iconCls"></span>
-                </router-link>
-                <span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>
-                <span v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">
-                    <span class="el-icon-arrow-right"></span>
-                </span>
-            </li>
-        </ul>
-        <el-container>
-            <!--<el-aside class="sub-aside">-->
-                <!--<div class="breadcrumb">-->
-                    <!--<div v-for="(bc, index) in breadCrumb" :key="index">-->
-                        <!--<router-link v-if="breadCrumb.length !== index + 1" class="breadcrumb-item" :to="bc.path">-->
-                            <!--<span :class="'breadcrumb-icon ' + bc.iconCls"></span>-->
-                        <!--</router-link>-->
-                        <!--<span v-else :class="'breadcrumb-icon ' + bc.iconCls"></span>-->
-                        <!--<div v-if="breadCrumb.length !== index + 1" class="breadcrumb-divide">-->
-                            <!--<span class="el-icon-arrow-down"></span>-->
-                        <!--</div>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</el-aside>-->
-            <el-aside class="main-aside">
-                <div class="user-info">
-                    <div class="avatar">
-                        <router-link :to="'/member/settings'">
-                            <img src="./assets/avatar/10.png" />
+        <el-container class="main-container" v-if="!$route.meta.noLeftMenu"
+                      v-loading="loading"
+                      element-loading-spinner="el-icon-loading">
+            <el-aside width="200px">
+                <el-row class="aside-avatar">
+                    <el-col :span="24">
+                        <router-link :to="'/personal/settings'">
+                            <div class="avatar">
+                                <img :src="host + '/storage/' + this.userAvatar" />
+                            </div>
+                            <div class="username">{{ name || '点击修改昵称' }}</div>
                         </router-link>
-                    </div>
-                    <span class="name">陈子峰</span>
-                </div>
-                <el-menu
-                    default-active="1"
-                    class="el-menu-vertical-demo">
-                    <router-link :to="'/'">
-                        <el-menu-item index="1">
-                            <i class="el-icon-menu"></i>
-                            <span>项目</span>
-                        </el-menu-item>
-                    </router-link>
-                    <router-link :to="'/'">
-                        <el-menu-item index="2">
-                            <i class="el-icon-document"></i>
-                            <span slot="title">汇报</span>
-                        </el-menu-item>
-                    </router-link>
-                    <router-link :to="'/'">
-                        <el-menu-item index="3">
-                            <i class="el-icon-time"></i>
-                            <span slot="title">动态</span>
-                        </el-menu-item>
-                    </router-link>
-                    <router-link :to="'/'">
-                        <el-menu-item index="4">
-                            <i class="el-icon-setting"></i>
-                            <span slot="title">设置</span>
-                        </el-menu-item>
-                    </router-link>
-                </el-menu>
+                    </el-col>
+                </el-row>
+                <el-row class="tac">
+                    <el-col :span="24">
+                        <el-menu
+                            default-active="2"
+                            class="el-menu-vertical-demo">
+                            <router-link :to="'/team'">
+                                <el-menu-item index="1">
+                                    <i class="fa fa-users"></i>
+                                    <span slot="title">团队</span>
+                                </el-menu-item>
+                            </router-link>
+                            <router-link :to="'/'">
+                                <el-menu-item index="2">
+                                    <i class="fa fa-th-large"></i>
+                                    <span slot="title">项目</span>
+                                </el-menu-item>
+                            </router-link>
+                            <el-menu-item index="4" disabled>
+                                <i class="fa fa-history"></i>
+                                <span slot="title">动态(pending...)</span>
+                            </el-menu-item>
+                            <el-menu-item index="4" disabled>
+                                <i class="fa fa-area-chart"></i>
+                                <span slot="title">统计(pending...)</span>
+                            </el-menu-item>
+                        </el-menu>
+                    </el-col>
+                </el-row>
+                <el-footer>
+                    <div class="copyright">©2018 Gante.app</div>
+                    <div class="version">{{ version }}</div>
+                </el-footer>
             </el-aside>
-            <el-container>
-                <el-main>
-                    <router-view/>
-                </el-main>
+            <el-container class="wrapper">
+                <div class="main-content">
+                    <el-header class="clearfix">
+                        <div class="header-left">
+                            <div class="breadcrump">
+                                <router-link :to="'/'">{{ currentTeamName }}</router-link>
+                                <span v-if="showInBreadcrumb">
+                                    <i style="margin: 0 10px;" class="fa fa-angle-right"></i>
+                                    <router-link :to="'/project/tasks'">{{ currentProjectName }}</router-link>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="header-right">
+                            <el-button v-if="currentTeamName" type="text" @click="setting">团队设置</el-button>
+                            <label>/</label>
+                            <el-button type="text" @click="logout">退出</el-button>
+                        </div>
+                    </el-header>
+                    <router-view />
+                </div>
             </el-container>
         </el-container>
-        <el-footer class="main-footer">©2018 GantTask</el-footer>
+        <el-container v-else>
+            <router-view />
+        </el-container>
     </div>
 </template>
 
 <script>
-import IconMap from './config/icon-map'
+import {mapState} from 'vuex'
+import route from './router/index'
+import axios from 'axios'
 export default {
     name: 'App',
     data () {
         return {
-            IconMap: IconMap,
-            breadCrumb: []
+            loading: false,
+            version: process.env.VER,
+            host: process.env.HOST
         }
+    },
+    computed: {
+        ...mapState({
+            apiToken: state => state.user.apiToken,
+            userAvatar: state => state.user.userAvatar,
+            name: state => state.user.name,
+            currentTeamId: state => state.team.currentTeamId,
+            currentTeamName: state => state.team.currentTeamName,
+            currentProjectName: state => state.project.currentProjectName,
+            showInBreadcrumb: state => state.project.showInBreadcrumb
+        })
     },
     methods: {
-        updateBreadCrumb: function () {
-            this.breadCrumb = []
-            let self = this
-            let pathArr = this.$route.path.split('/').filter(function (el) {
-                return el.length !== 0
+        createBreadcrumbs: function () {
+            let uri = this.$route.path
+            let uriArr = uri.split('/').filter((item, index) => {
+                return item.length !== 0
             })
-
-            if (pathArr.length === 0) {
-                this.breadCrumb.push({
-                    path: IconMap['project'].path,
-                    iconCls: IconMap['project'].iconCls
-                })
+            if (uriArr.length > 0 && uriArr[0] === 'project') {
+                this.$store.dispatch('project/showBreadcrumb', true)
+            } else {
+                this.$store.dispatch('project/showBreadcrumb', false)
             }
-
-            pathArr.forEach(function (el) {
-                self.breadCrumb.push({
-                    path: IconMap[el].path,
-                    iconCls: IconMap[el].iconCls
-                })
+        },
+        checkLogin: function () {
+            // 检查浏览器保存的 login 的状态
+            let uri = this.$route.path
+            let uriArr = uri.split('/')
+            let mainUri = uriArr[1]
+            if (!this.checkToken() &&
+                mainUri !== 'join' &&
+                mainUri !== 'register' &&
+                mainUri !== 'forgot_password') {
+                route.push('/login')
+            }
+        },
+        checkToken: function () {
+            let token = this.apiToken
+            return !!(token && token !== null && token !== 'undefined' && token !== 'null' && token !== undefined)
+        },
+        checkCurrentTeam: function () {
+            if (this.currentTeamId === 'undefined' || this.currentTeamName === 'undefined' ||
+                !this.currentTeamId || !this.currentTeamName) {
+                this.$message.info('请先创建或选择团队')
+                route.push('/team')
+            }
+        },
+        logout: function () {
+            this.loading = true
+            axios.get('user/logout?api_token=' + this.apiToken).then((res) => {
+                if (res.data.error) {
+                    this.$message.error(res.data.message)
+                } else {
+                    this.$message.success(res.data.message)
+                    this.$store.dispatch('user/logout')
+                }
+                this.loading = false
             })
-        }
-    },
-    watch: {
-        $route () {
-            this.updateBreadCrumb()
+        },
+        setting: function () {
+            route.push('/team_settings')
         }
     },
     created: function () {
-        this.updateBreadCrumb()
+        // 页面刷新时，检查用户是否有 current team，如果没有，跳转到 team 的页面
+        // 这里应该只考虑用户登录成功后，跳转到 / 页面时，才做检查和跳转
+        if (this.checkToken() && this.$route.path === '/') {
+            this.checkCurrentTeam()
+            this.createBreadcrumbs()
+        } else {
+            this.checkLogin()
+        }
+    },
+    updated: function () {
+        if (this.checkToken()) {
+            this.checkCurrentTeam()
+            this.createBreadcrumbs()
+        }
+        this.checkLogin()
     }
 }
 </script>
 
-<style>
+<style lang="scss">
+    $asideWidth: 200px;
     html, body {
-        min-height: 100%;
+        padding: 0;
+        margin: 0;
+        height: 100%;
     }
     body {
-        padding: 0;
-        margin: 0;
-        background-color: #f4f7ed;
-        color: #303133;
+        height: 100%;
+        background-color: #F5F7FA;
+        overflow-x: hidden;
+    }
+    body, p, li, ol, div, a {
+        color: #3F587E;
         font-size: 14px;
+        font-family: 'Helvetica Neue', Arial, sans-serif;
+        font-weight: 300;
+        line-height: 18px;
+        text-decoration: none;
     }
-    hr {
-        display: block;
-        height: 1px;
-        border: 0;
-        border-top: 1px solid #ddebdd;
-        margin: 1em 0;
-        padding: 0;
-    }
-    h1 .el-checkbox__inner {
-        width: 18px;
-        height: 18px;
-    }
-    h1 .el-checkbox__label,
-    h1 {
-        font-size: 18px;
-        line-height: 40px;
-    }
-    .fa {
-        color: #eee;
-    }
-    a:hover span,
     a:hover {
-        color: #8FBC8F;
+        color: #009DA0;
     }
-    .breadcrumb {
-        text-align: center;
-        padding-top: 30px;
-    }
-    .breadcrumb a {
-        font-size: 20px;
-    }
-    .breadcrumb  span.breadcrumb-icon {
-        color: #bfbfbf;
-        font-size: 20px;
-    }
-    .breadcrumb a span.breadcrumb-icon {
-        color: #8FBC8F;
-    }
-    .breadcrumb .breadcrumb-divide {
-        margin: 10px;
-    }
-    .breadcrumb .breadcrumb-divide span {
-        color: #303133;
-        font-size: 12px;
-    }
-    .breadcrumb-active span.fa {
-        color: #c0c4cc;
+    p {
+        margin-top: 0;
+        margin-bottom: 14px;
     }
     #app {
-        font-family: 'Avenir', Helvetica, Arial, sans-serif;
-        -webkit-font-smoothing: antialiased;
-        -moz-osx-font-smoothing: grayscale;
-        margin: 50px auto;
-        width: 1300px;
+        display: flex;
+        flex: 1;
     }
-    a {
-        text-decoration: none;
-        color: #303133;
+    #app, .el-main .content, .wrapper {
+        min-height: 100%;
     }
-    a:visited, a:hover, a:active {
-        color: inherit;
+    .main-container {
+        height: 100%;
     }
-    #app, .el-container {
-        min-height: 650px;
+    .wrapper {
+        width: 100%;
+        padding-left: 230px;
+        padding-right: 30px;
     }
-    #app > .el-container {
-        box-shadow: 0 1px 10px 0 rgba(0, 0, 0, .1);
+    .main-content {
+        padding: 0;
+        width: 100%;
+    }
+    .title {
+        text-align: left;
+        color: #777;
+        font-weight: 300;
+    }
+    .title .fa {
+        font-size: 0.8em;
+    }
+    .content {
+        width: 1112px;
+        margin: 0 auto;
         background-color: #fff;
     }
-    .main-aside {
-        width: 100px !important;
-        border-right: 3px solid darkseagreen;
+    .el-header {
+        padding-left: 0;
+        padding-right: 0;
+        padding-top: 20px;
+        border-bottom: 1px solid #ddd;
     }
-    .sub-aside {
-        width: 50px !important;
-        background-color: #f5f7fa;
-    }
-    .main-footer {
-        height: 50px !important;
+    .el-footer {
         text-align: center;
-        line-height: 50px;
-        font-size: 13px;
+        position: fixed;
+        bottom: 0;
+        width: $asideWidth;
+        padding: 0;
+    }
+    .el-footer .copyright {
+        font-size: 14px;
+    }
+    .el-footer .version {
+        font-size: 12px;
+        font-weight: bold;
+    }
+    .el-header, .el-footer {
+        background-color: transparent;
+        color: #333;
+        line-height: 60px;
+    }
+    .el-aside {
+        position: fixed;
+        left: 0;
+        top: 0;
+        height: 100%;
+        background-color: #fff;
+        color: #333;
+        text-align: center;
+        line-height: 200px;
+        -webkit-box-shadow: 0 0 18px 0 #d4dee6;
+        -moz-box-shadow: 0 0 18px 0 #d4dee6;
+        box-shadow: 0 0 18px 0 #d4dee6;
+    }
+    .el-main {
+        background-color: #fff;
+        color: #333;
+        line-height: 160px;
+        margin: 0 auto;
+        overflow: unset;
+        padding-left: 0;
+        padding-right: 0;
+    }
+    .el-main-no-bg {
+        background-color: transparent;
+    }
+    .el-main-fixed-width {
+        width: 1112px;
+    }
+    .el-main-auto-width {
+        width: auto;
+    }
+    body > .el-container {
+        margin-bottom: 40px;
+    }
+
+    .el-container:nth-child(5) .el-aside,
+    .el-container:nth-child(6) .el-aside {
+        line-height: 260px;
+    }
+
+    .el-container:nth-child(7) .el-aside {
+        line-height: 320px;
+    }
+    .line {
+        height: 1px;
+        width: 100%;
+        border-top: 1px solid #ddd;
+        margin: 30px 0;
     }
     .avatar {
-        width: 60px;
-        height: 60px;
-        margin: 20px auto;
-        border-radius: 60px;
-        border: 1px solid transparent;
-    }
-    .avatar:hover {
-        border-color: darkseagreen;
+        width: 80px;
+        height: 80px;
+        overflow: hidden;
+        border-radius: 40px;
+        text-align: center;
+        margin: 30px auto 20px;
     }
     .avatar img {
-        width: 60px;
-        height: 60px;
-        border-radius: 60px;
+        width: 100%;
+        height: auto;
     }
-    #app .el-menu {
-        border: none;
+    .breadcrump {
+        padding: 12px 0;
     }
-    .el-checkbox__inner {
-        width: 16px;
-        height: 16px;
+    .breadcrump a {
+        color: #8FBC8F;
+        font-weight: bold;
     }
-    .user-info {
-        text-align: center;
-        margin-bottom: 15px;
-    }
-    .user-info .name {
-        font-size: 12px;
-    }
-    body .el-form--label-top .el-form-item__label {
-        font-size: 8px;
-        padding: 0;
-        line-height: 16px;
-    }
-    body .el-form-item--mini.el-form-item {
-        margin-bottom: 5px;
-    }
-    ul.breadcrumb {
-        padding: 0;
-        margin: 0;
-        height: 40px;
-    }
-    ul.breadcrumb li {
+    .el-header .header-left {
         float: left;
-        list-style-type: none;
-        line-height: 20px;
+    }
+    .el-header .header-right {
+        float: right;
+    }
+    .aside-avatar {
+        margin-bottom: 30px;
+    }
+    .aside-avatar .username {
+        color: #000;
     }
 </style>
