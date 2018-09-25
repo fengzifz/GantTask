@@ -76,16 +76,12 @@ npm run dev
 
 ## 项目截图
 
-<img src="./example-img/01.png" width="350" />
-<img src="./example-img/02.png" width="350" />
-
-
-<img src="./example-img/03.png" width="350" />
-<img src="./example-img/04.png" width="350" />
-
-
-<img src="./example-img/05.png" width="350" />
-<img src="./example-img/06.png" width="350" />
+<img src="./example-img/01.png" />
+<img src="./example-img/02.png" />
+<img src="./example-img/03.png" />
+<img src="./example-img/04.png" />
+<img src="./example-img/05.png" />
+<img src="./example-img/06.png" />
 
 ## License
 
