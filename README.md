@@ -1,4 +1,6 @@
-# Gante
+# Gante - 甘特图任务管理器
+
+适合新手入门学习的完整 vue 案例。
 
 ## 前言
 之前跟朋友一起写了一个简单的任务管理器，带有甘特图的功能。开源的目的是因为现在 Vue 比较完整的开源案例比较少。开源出去供大家一起学习。
@@ -10,9 +12,9 @@
 该项目原仓库是在 Gitlab 上面，比较喜欢 Gitlab 自带的 CI/CD 功能，所以个人平时使用 Gitlab 比较多，迁移到 Github 上面进行开源，删除了接口的一些敏感信息。项目目前是 1.x 版本，还是有一些 bug 和很多不那么好的地方。
 
 ## 在线案例
-地址：https://www.gante.app
-用户：demo@demo.com
-密码：123456
+- 地址：https://www.gante.app
+- 用户：demo@demo.com
+- 密码：123456
 
 ##  前端技术栈
 - Vue 2.0
@@ -21,6 +23,7 @@
 - axios
 - frappe-gantt
 - quill-editor
+- ECMAScript 6
 
 ## 代码风格
 本项目遵循 ESLint 代码风格
@@ -47,6 +50,11 @@
 
 目录结构不再多说，项目是使用 vue-cli 构建，并且具备热重载和保存时 lint 校验，更多相关信息请查阅官方文档：[Vue.js - 命令行工具](https://cn.vuejs.org/v2/guide/installation.html)。
 
+## 贡献者
+- [zijianchen](https://github.com/zijianchen)
+
+从 gitlab 拷贝过来时，我并没有保留 .git 文件，所以所有的历史提交记录都不会在这里出现。
+
 ## 项目截图
 
 <img src="./example-img/01.png" width="350" />
@@ -59,3 +67,7 @@
 
 <img src="./example-img/05.png" width="350" />
 <img src="./example-img/06.png" width="350" />
+
+## License
+
+Released under the [MIT License](https://github.com/fengzifz/GantTask/blob/master/LICENSE)
