@@ -11,6 +11,25 @@
 
 该项目原仓库是在 Gitlab 上面，比较喜欢 Gitlab 自带的 CI/CD 功能，所以个人平时使用 Gitlab 比较多，迁移到 Github 上面进行开源，删除了接口的一些敏感信息。项目目前是 1.x 版本，还是有一些 bug 和很多不那么好的地方。
 
+## 使用和使用
+
+克隆到本地
+```
+git clone git@github.com:fengzifz/GantTask.git
+```
+
+安装 package
+```
+npm install
+```
+
+开发模式运行
+```
+npm run dev
+```
+
+**注意：由于是直接删除了一些接口信息，本地运行仍然需要搭配后台才能使用，但可以查看一下的在线案例。以后再考虑添加测试数据在本 demo 里面**
+
 ## 在线案例
 - 地址：https://www.gante.app
 - 用户：demo@demo.com
