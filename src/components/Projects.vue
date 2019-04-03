@@ -168,7 +168,7 @@ export default {
         },
         getAllProjects: function () {
             this.allLoading = true
-            axios.get('project/get_all?api_token=' + this.apiToken + '&team_id=' + this.currentTeamId)
+            axios.get('/project/get_all?api_token=' + this.apiToken + '&team_id=' + this.currentTeamId)
                 .then((res) => {
                     if (res.data.error) {
                         this.$message.error(res.data.message)

@@ -358,7 +358,7 @@ export default {
             this.loading = true
             let pid = this.currentProjectId
             let tid = this.currentTeamId
-            axios.get('task/get_tasks?api_token=' + this.apiToken + '&project_id=' + pid + '&team_id=' + tid).then((res) => {
+            axios.get('/task/get_tasks?api_token=' + this.apiToken + '&project_id=' + pid + '&team_id=' + tid).then((res) => {
                 if (res.data.error) {
                     this.$message.error(res.data.message)
                 } else {
@@ -369,7 +369,7 @@ export default {
         },
         getMembers: function () {
             // 获取项目的所有成员
-            axios.get('project/get_members?api_token=' + this.apiToken +
+            axios.get('/project/get_members?api_token=' + this.apiToken +
                 '&project_id=' + this.currentProjectId + '&team_id=' + this.currentTeamId)
                 .then((res) => {
                     if (res.data.error) {
@@ -382,7 +382,7 @@ export default {
         addNewTask: function () {
             // 添加新任务
             this.addTaskLoading = true
-            axios.post('task/create', {
+            axios.post('/task/create', {
                 project_id: this.currentProjectId,
                 team_id: this.currentTeamId,
                 name: this.newTask.name,

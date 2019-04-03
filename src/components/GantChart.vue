@@ -250,7 +250,7 @@ export default {
                 target: '#task-item-' + tid,
                 spinner: 'el-icon-loading'
             })
-            axios.post('task/update_general', {
+            axios.post('/task/update_general', {
                 api_token: this.apiToken,
                 executor_id: executorId,
                 progress: progress,

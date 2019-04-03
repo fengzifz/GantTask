@@ -16,7 +16,9 @@ import 'quill/dist/quill.core.css'
 import 'quill/dist/quill.snow.css'
 import 'quill/dist/quill.bubble.css'
 
-axios.defaults.baseURL = process.env.HOST + '/api/v1/'
+process.env.Mock && require('./mock/index')
+
+axios.defaults.baseURL = process.env.HOST + '/'
 axios.defaults.headers = {
     'Accept': 'Application/json',
     'Access-Control-Allow-Origin': '*',

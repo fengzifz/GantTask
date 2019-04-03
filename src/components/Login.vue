@@ -38,11 +38,11 @@ export default {
     methods: {
         login: function () {
             this.loading = true
-            axios.post('user/login', {
-                app_key: 'xxxxxxxxxx',
+            axios.post('/user/login', {
                 email: this.userInfo.email,
                 password: this.userInfo.password
             }).then((res) => {
+                console.log(res)
                 if (res.data.error) {
                     this.$message.error(res.data.message)
                 } else {

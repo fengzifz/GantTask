@@ -71,7 +71,7 @@ export default {
         },
         getUserTeams: function () {
             this.loading = true
-            axios.get('team/get_user_teams?api_token=' + this.apiToken)
+            axios.get('/team/get_user_teams?api_token=' + this.apiToken)
                 .then((res) => {
                     if (res.data.error) {
                         this.$message.error(res.data.message)
@@ -83,7 +83,7 @@ export default {
         },
         create: function () {
             this.loading = true
-            axios.post('team/create', {
+            axios.post('/team/create', {
                 name: this.newTeam.name,
                 api_token: this.apiToken
             }).then((res) => {

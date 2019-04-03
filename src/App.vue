@@ -8,7 +8,7 @@
                     <el-col :span="24">
                         <router-link :to="'/personal/settings'">
                             <div class="avatar">
-                                <img :src="host + '/storage/' + this.userAvatar" />
+                                <img :src="userAvatar" />
                             </div>
                             <div class="username">{{ name || '点击修改昵称' }}</div>
                         </router-link>
@@ -85,7 +85,7 @@ export default {
         return {
             loading: false,
             version: process.env.VER,
-            host: process.env.HOST
+            host: process.env.BASE_PATH
         }
     },
     computed: {

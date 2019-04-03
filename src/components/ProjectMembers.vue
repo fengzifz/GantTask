@@ -11,7 +11,7 @@
                 <el-col :span="3" v-for="(item, index) in proMembers" :key="index">
                     <el-card :body-style="{padding: '10px'}" shadow="hover" class="member-wrap">
                         <div class="member-avatar">
-                            <img :src="host + '/storage/' + item.avatar " />
+                            <img :src="'/static/n.png'" />
                         </div>
                         <div class="member-name">
                             {{ item.name }}
@@ -107,7 +107,7 @@ export default {
             this.diaLoading = true
             let token = this.apiToken
             let tid = this.teamId
-            axios.get('team/get_team_users?api_token=' + token + '&team_id=' + tid).then(res => {
+            axios.get('/team/get_team_users?api_token=' + token + '&team_id=' + tid).then(res => {
                 if (res.data.error) {
                     this.$message.error(res.data.message)
                 } else {

@@ -59,7 +59,7 @@ export default {
     methods: {
         getCompletedTasks: function () {
             this.loading = true
-            axios.get('task/get_completed?api_token=' + this.apiToken + '&team_id=' + this.tid +
+            axios.get('/task/get_completed?api_token=' + this.apiToken + '&team_id=' + this.tid +
             '&project_id=' + this.pid).then(res => {
                 if (res.data.error) {
                     this.$message.error(res.data.message)

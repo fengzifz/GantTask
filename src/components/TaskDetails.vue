@@ -170,7 +170,7 @@ export default {
             // 根据 id 获取任务信息
             this.loading = true
             let tid = this.$route.params.id
-            axios.get('task/get?api_token=' + this.apiToken + '&project_id=' + this.currentProjectId +
+            axios.get('/task/get?api_token=' + this.apiToken + '&project_id=' + this.currentProjectId +
             '&team_id=' + this.currentTeamId + '&id=' + tid).then((res) => {
                 if (res.data.error) {
                     this.$message.error(res.data.message)
